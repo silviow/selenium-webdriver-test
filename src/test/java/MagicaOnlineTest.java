@@ -21,14 +21,17 @@ public class MagicaOnlineTest {
     public void testHeroSectionSubtitle() throws IOException {
         var file = new File("src/test/java/file.txt");
         BufferedReader reader = new BufferedReader(new FileReader(file));
+
         var expectedHeroSubtitle = reader.readLine();
         reader.close();
 
         WebDriver chromeDriver = new ChromeDriver();
         chromeDriver.navigate().to("https://magicaonline.com.br/");
+
         List<WebElement> elementsFound = chromeDriver.findElements(By.className("second-title"));
         WebElement heroSubtitleElement = elementsFound.get(0);
         var heroSubtitleText = heroSubtitleElement.getText();
+        
         chromeDriver.quit();
 
         assertEquals(heroSubtitleText, expectedHeroSubtitle);
